@@ -1,5 +1,5 @@
-const fs 	= require('fs'); 
-
+const fs 		= require('fs'); 
+const beautify 	= require('js-beautify').js; 
 function createModelFile (object) {
 	var schema = object.model_name+'Schema'; 
 	var properties = ''; 
@@ -17,18 +17,18 @@ function createModelFile (object) {
 		}) \n\n
 		var ${object.model_name} = mongoose.model('${object.model_name}', ${schema}); 
 	`; 
-	
+	contentFile = beautify(contentFile, { indent_size: 4, space_in_empty_paren: true }); 
 	fs.stat('models', (err) => {
 		if(!err) {
 			console.log('The folder already exists');
-			fs.writeFile(`models/${object.model_name}.js`, contentFile.trim(), (err) => {
+			fs.writeFile(`models/${object.model_name}.js`, contentFile, (err) => {
 				if (err) throw err; 
 				console.log('The file was successufully created'); 
 			});
 		}
 		else if (err.code === 'ENOENT') {
         	fs.mkdirSync('models'); 
-        	fs.writeFile(`models/${object.model_name}.js`, contentFile.trim(), (err) => {
+        	fs.writeFile(`models/${object.model_name}.js`, contentFile, (err) => {
 				if (err) throw err; 
 				console.log('The file was successufully created'); 
 			}); 

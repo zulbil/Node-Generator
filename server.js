@@ -40,12 +40,48 @@ const questions = [
 
 var output = [];
 
+const questionsProp = [
+  {
+    type: 'input',
+    name: 'property',
+    message: "What's attribute you want to use ?"
+  },
+  {
+    type: 'list',
+    name: 'type',
+    message: "What's type you want to assign him ? ",
+    choices: ['Number', 'String', 'Date', 'Boolean'],
+    default: 'String',
+    filter: function(val) {
+      return val.toLowerCase();
+    }
+  }, 
+  {
+    type: 'confirm',
+    name: 'askAgain',
+    message: 'Do you want to add another property ? (just hit enter for YES)',
+    default: true
+  }
+];
+
 function ask() {
   inquirer.prompt(questions).then(answers => {
     var answer = {property: answers.property, type: answers.type }; 
     output.push(answer);
     if (answers.askAgain) {
-      ask();
+      askProperty();
+    } else {
+      console.log(JSON.stringify(output, undefined, 2));
+    }
+  });
+}
+
+function askProperty() {
+  inquirer.prompt(questionsProp).then(answers => {
+    var answer = {property: answers.property, type: answers.type }; 
+    output.push(answer);
+    if (answers.askAgain) {
+      askProperty();
     } else {
       console.log(JSON.stringify(output, undefined, 2));
     }

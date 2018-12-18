@@ -27,10 +27,7 @@ const questions = [
     name: 'type',
     message: "What's type you want to assign him ? ",
     choices: ['Number', 'String', 'Date', 'Boolean'],
-    default: 'String',
-    filter: function(val) {
-      return val.toLowerCase();
-    }
+    default: 'String'
   }, 
   {
     type: 'confirm',
@@ -56,10 +53,7 @@ const questionsProp = [
     name: 'type',
     message: "What's type you want to assign him ? ",
     choices: ['Number', 'String', 'Date', 'Boolean'],
-    default: 'String',
-    filter: function(val) {
-      return val.toLowerCase();
-    }
+    default: 'String'
   }, 
   {
     type: 'confirm',

@@ -2,6 +2,8 @@ const fs            = require('fs');
 const mongoose      = require('mongoose');
 const commander     = require('commander');
 const inquirer      = require('inquirer');
+const bootstrap     = require('./config/bootstrap'); 
+
 
 mongoose.Promise    = global.Promise;
 
@@ -38,7 +40,10 @@ const questions = [
   }
 ];
 
-var output = [];
+var output = {
+  model_name: '', 
+  properties: []
+};
 
 const questionsProp = [
   {
@@ -67,11 +72,12 @@ const questionsProp = [
 function ask() {
   inquirer.prompt(questions).then(answers => {
     var answer = {property: answers.property, type: answers.type }; 
-    output.push(answer);
+    output.model_name = (answers.model_name) ? answers.model_name : "" ; 
+    output.properties.push(answer);
     if (answers.askAgain) {
       askProperty();
     } else {
-      console.log(JSON.stringify(output, undefined, 2));
+      bootstrap.createModelFile(output); 
     }
   });
 }
@@ -79,11 +85,11 @@ function ask() {
 function askProperty() {
   inquirer.prompt(questionsProp).then(answers => {
     var answer = {property: answers.property, type: answers.type }; 
-    output.push(answer);
+    output.properties.push(answer);
     if (answers.askAgain) {
       askProperty();
     } else {
-      console.log(JSON.stringify(output, undefined, 2));
+      bootstrap.createModelFile(output); 
     }
   });
 }

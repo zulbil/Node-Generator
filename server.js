@@ -2,15 +2,22 @@ const fs            = require('fs');
 const mongoose      = require('mongoose');
 const commander     = require('commander');
 const inquirer      = require('inquirer');
-const bootstrap     = require('./config/bootstrap'); 
+const bootstrap     = require('./bootstrap/bootstrap'); 
+const yargs         = require('yargs'); 
 
+var argv = require('yargs').argv; 
+
+console.log(argv); 
 
 mongoose.Promise    = global.Promise;
 
-console.log('*****************************************');
+console.log('*************************************');
 console.log('* Welcome to the Node generator App *');
-console.log('*****************************************');
-
+console.log('*************************************');
+console.log('\n'); 
+console.log('This commands helps you to generate schema'); 
+console.log('You need to answer those questions below to create that new schema'); 
+console.log('\n'); 
 const questions = [
   {
     type: 'input',
@@ -73,6 +80,8 @@ function ask() {
     } else {
       bootstrap.createModelFile(output); 
     }
+  }).catch((err) => {
+    console.log(err); 
   });
 }
 
@@ -85,6 +94,8 @@ function askProperty() {
     } else {
       bootstrap.createModelFile(output); 
     }
+  }).catch((err) => {
+    console.log('Exist prompt', err); 
   });
 }
 

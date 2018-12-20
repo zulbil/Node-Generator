@@ -7,9 +7,6 @@ function createModelFile (object) {
 		var row = `${object.properties[i].property} : ${object.properties[i].type}, \n`; 
 		properties = `${properties} ${row}`; 
 	} 
-	// var regex = /[[:punct:]]$/g; 
-	// properties = properties.replace(regex, ''); 
-	// console.log(properties);
 	var contentFile = `
 		var mongoose = require('mongoose');\n
 		var ${schema} = new mongoose.Schema({
@@ -23,14 +20,14 @@ function createModelFile (object) {
 			console.log('The folder already exists');
 			fs.writeFile(`models/${object.model_name}.js`, contentFile, (err) => {
 				if (err) throw err; 
-				console.log('The file was successufully created'); 
+				console.log('The file was successfully created'); 
 			});
 		}
 		else if (err.code === 'ENOENT') {
         	fs.mkdirSync('models'); 
         	fs.writeFile(`models/${object.model_name}.js`, contentFile, (err) => {
 				if (err) throw err; 
-				console.log('The file was successufully created'); 
+				console.log('The file was successfully created'); 
 			}); 
     	}
 	})

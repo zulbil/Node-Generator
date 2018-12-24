@@ -1,5 +1,6 @@
 const fs 		= require('fs'); 
 const beautify 	= require('js-beautify').js; 
+
 function createModelFile (object) {
 	var schema = object.model_name+'Schema'; 
 	var properties = ''; 

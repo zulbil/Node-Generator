@@ -19,4 +19,3 @@ In Development
 
 - Joel Alexandre Khang Zulbal [alexkhang25@yahoo.fr]
 
-### What i learned: 

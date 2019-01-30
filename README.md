@@ -1,5 +1,5 @@
 ### Node Generator
-=========================
+===================
 
 <p>
     It's a cli app that can generate a model schema only by providing some parameters 
@@ -9,7 +9,7 @@
 
 ### Installation
 
-- git clone https://github.com/zulbil/TodoApi.git
+- git clone https://github.com/zulbil/Node-Generator
 - npm install
 
 In Development

@@ -1,5 +1,5 @@
 # Node Generator
-=====================
+
 
 <p>
     It's a cli app that can generate a model schema only by providing some parameters 
